@@ -100,8 +100,11 @@ main {
 .task-list h2 {
 	font-size: 1.5rem;
 	font-weight: 300;
+	font-weight: bold;
 	color: var(--light);
 	margin-bottom: 1rem;
+	font-family: Maku, sans-serif;
+
 }
 .tasks{
 	padding: 1rem;
