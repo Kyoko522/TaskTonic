@@ -203,5 +203,17 @@ main {
 
 .date{
 	font-size: 1rem;
+	postion: absolute;
+	left: 0;
+	padding-left: 2.9rem;
 }
 
+
+.top-header{
+	display: flex;
+	text-align: center;
+}
+
+.icon{
+	margin-top: 12px;
+}
