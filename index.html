@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TaskTonic</title>
+	<link rel="icon" type="image/x-icon" href="/Pic/icon.png">
+
+	<link rel="stylesheet" href="main.css" />
+</head>
+<body>
+	<topheader class="top-header">
+		<h3 class = 'icon'>TaskTonic</h1>
+			<h1><span id="date" class = 'date'></span></h1>
+	</topheader>
+	
+	<header>
+		<h1>Task List</h1>
+		<form id="new-task-form">
+			<input 
+				type="text" 
+				name="new-task-input" 
+				id="new-task-input" 
+				placeholder="What do you have planned?" />
+			<input 
+				type="submit"
+				id="new-task-submit" 
+				value="Add task" />
+		</form>
+	</header>
+	<main>
+		<section class="task-list" onload = "init()">
+			<h2>To Do</h2>
+
+			<div class="tasks" id="status" >
+				<!-- <div class="task">
+					<div class="content">
+						<input 
+							type="text" 
+							class="text" 
+							value="A new task"
+							readonly>
+					</div>
+					<div class="actions">
+                        <button class="comment">Comment</button>
+						<button class="edit">Edit</button>
+						<button class="delete">Delete</button> 
+					</div>
+				</div> -->
+
+			</div>
+
+		</section>
+
+		<section class = "task-list" onload = "init()">
+			<h2>Working On</h2>
+
+			<div class="tasks" id="status">
+
+				<!-- <div class="task" draggable="true">
+					<div class="content">
+						<input 
+							type="text" 
+							class="text" 
+							value="A new task"
+							readonly>
+					</div>
+					<div class="actions">
+                        <button class="comment">Comment</button>
+						<button class="edit">Edit</button>
+						<button class="delete">Delete</button> 
+					</div>
+				</div> -->
+
+			</div>
+
+		</section>
+
+		<section class = "task-list" onload = "init()">
+			<h2>Complete Task</h2>
+
+			<div class="tasks" id="status">
+				<!-- <div class="task">
+					<div class="content">
+						<input 
+							type="text" 
+							class="text" 
+							value="A new task"
+							readonly>
+					</div>
+					<div class="actions">
+                        <button class="comment">Comment</button>
+						<button class="edit">Edit</button>
+						<button class="delete">Delete</button> 
+					</div>
+				</div> -->
+
+			</div>
+
+		</section>
+	</main>
+
+	<script src="main.js"></script>
+</body>
+</html>
