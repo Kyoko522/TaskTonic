@@ -22,19 +22,18 @@ document.addEventListener('visibilitychange', () => {
 
   // change the title of the website END
 
-//date start 
-console.log(itemArray)
+//date start
 
-function displayDate(){
-	let date = new Date()
-	date = date.toString().split(" ")
-	date = date[1] + " " + date[2] + " " + date[3] 
-	document.querySelector("#date").innerHTML = date 
-  }
-
-  window.onload = function() {
-	displayDate()
-};
+// function displayDate(){
+// 	let date = new Date()
+// 	date = date.toString().split(" ")
+// 	date = date[1] + " " + date[2] + " " + date[3]
+// 	document.querySelector("#date").innerHTML = date
+//   }
+//
+//   window.onload = function() {
+// 	displayDate()
+// };
 //date end
 
 //making a new task and adding it to the screen START
@@ -45,6 +44,7 @@ window.addEventListener('load', () => { //does all the html and css file stuff f
 
 	form.addEventListener('submit', (e) => {//run this every time the submit button is clicked
 		e.preventDefault();//show that button can be clicked again
+		console.log("The submit button was clicked")
 
 		
 		const task = input.value;

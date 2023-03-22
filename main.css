@@ -36,7 +36,8 @@ header {
 
 header h1{ 
 	font-size: 2.5rem;
-	font-weight: 300;
+	font-weight: 900;
+	font-family: Maku, sans-serif;
 	margin-bottom: 1rem;
     color: var(--light);
 }
@@ -99,8 +100,7 @@ main {
 
 .task-list h2 {
 	font-size: 1.5rem;
-	font-weight: 300;
-	font-weight: bold;
+	font-weight: 600;
 	color: var(--light);
 	margin-bottom: 1rem;
 	font-family: Maku, sans-serif;
