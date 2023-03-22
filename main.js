@@ -13,7 +13,7 @@ document.addEventListener('visibilitychange', () => {
   // Check if the page is hidden
   if (document.visibilityState === 'hidden') {
     // Change the tab title to indicate the page is hidden
-    document.title = 'You Have Work';
+    document.title = 'You Have Work!!';
   } else {
     // Change the tab title back to the original title when the page is visible
     document.title = originalTitle;
