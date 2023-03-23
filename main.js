@@ -141,6 +141,7 @@ window.addEventListener('load', () => { //does all the html and css file stuff f
 
 		if (!task){
 			alert("Please fill out the task")
+			return false;
 		}
 
 		const task_el = document.createElement('div');
