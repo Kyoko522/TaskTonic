@@ -23,7 +23,6 @@ document.addEventListener('visibilitychange', () => {
 });
 
 // change the title of the website END
-
 //date start
 
 // function displayDate(){
