@@ -2,7 +2,7 @@
 const itemArray = localStorage.getItem("new-task-input") ? JSON.parse(localStorage.getItem("new-task-input")) :
 	[]
 
-//localStorage.clear();
+localStorage.clear();
 
 //local storage end
 
