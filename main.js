@@ -2,6 +2,8 @@
 const itemArray = localStorage.getItem("new-task-input") ? JSON.parse(localStorage.getItem("new-task-input")):
 []
 
+// localStorage.clear();
+
 //local storage end
 
 //change the title of the website START
@@ -44,9 +46,10 @@ window.addEventListener('load', () => { //does all the html and css file stuff f
 
 	form.addEventListener('submit', (e) => {//run this every time the submit button is clicked
 		e.preventDefault();//show that button can be clicked again
-		console.log("The submit button was clicked")
+		itemArray.push(input.value)
+		console.log(itemArray)
 
-		
+
 		const task = input.value;
 		
 		const task_el = document.createElement('div');
@@ -85,13 +88,6 @@ window.addEventListener('load', () => { //does all the html and css file stuff f
 		task_el.appendChild(task_actions_el);
 
 		list_el.appendChild(task_el);
-		createItem(input)
-
-		function createItem(input) {
-			itemArray.push(input.value)
-			localStorage.setItem("new-task-input", JSON.stringify(itemArray))
-			// location.reload()
-		}
 
 		//draggables.push(task_el);
 		input.value = '';
@@ -154,9 +150,6 @@ window.addEventListener('load', () => { //does all the html and css file stuff f
 			}, { offset: Number.NEGATIVE_INFINITY }).element//set the offset to that all the other elements will be closer to y and is the smallest
 		}
 		//drag feature END
-
-
-
 
 	});
 });
