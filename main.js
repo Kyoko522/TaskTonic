@@ -132,7 +132,8 @@ window.addEventListener('load', () => { //does all the html and css file stuff f
 
 	form.addEventListener('submit', (e) => {//run this every time the submit button is clicked
 		e.preventDefault();//prevent the web page from refreshing
-		itemArray.push(input.value)
+		if (input.value != ''){
+		itemArray.push(input.value)}
 		localStorage.setItem("new-task-input", JSON.stringify(itemArray));
 		console.log(itemArray)
 
