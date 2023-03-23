@@ -1,24 +1,93 @@
 //local storage start
 const itemArray = localStorage.getItem("new-task-input") ? JSON.parse(localStorage.getItem("new-task-input")) :
 	[]
-const workingonArray = localStorage.getItem("new-task-input") ? JSON.parse(localStorage.getItem("new-task-input")) :
+
+const workingon = localStorage.getItem("works") ? JSON.parse(localStorage.getItem("works")) :
 	[]
 
-const completedArray = localStorage.getItem("new-task-input") ? JSON.parse(localStorage.getItem("new-task-input")) :
+const completed = localStorage.getItem("complete") ? JSON.parse(localStorage.getItem("complete")) :
 	[]
 
 
 console.log('itemArray')
 console.log(itemArray)
 console.log('workingonArray')
-console.log(workingonArray)
+console.log(workingon)
 console.log('completeArray')
-console.log(completedArray)
+console.log(completed)
 //localStorage.clear();
+for (let i = 0; i < itemArray.length; i++){
+
+	const list_el = document.querySelector("#status")
+	const task_el = document.createElement('div');
+		task_el.setAttribute('draggable', 'true');//this is equal to having draggable = 'true'
+		task_el.className = 'task';
+		task_el.classList.add('task');
+
+
+		const task_content_el = document.createElement('div');
+		task_content_el.classList.add('content');
+
+		task_el.appendChild(task_content_el);
+
+		const task_input_el = document.createElement('input');
+		task_input_el.classList.add('text');
+		task_input_el.type = 'text';
+		task_input_el.value = itemArray[i];
+		task_input_el.setAttribute('readonly', 'readonly');
+
+		task_content_el.appendChild(task_input_el);
+
+		const task_actions_el = document.createElement('div');
+		task_actions_el.classList.add('actions');
+
+		const task_edit_el = document.createElement('button');
+		task_edit_el.classList.add('edit');
+		task_edit_el.innerText = 'Edit';
+
+		const task_delete_el = document.createElement('button');
+		task_delete_el.classList.add('delete');
+		task_delete_el.innerText = 'Delete';
+
+		task_actions_el.appendChild(task_edit_el);
+		task_actions_el.appendChild(task_delete_el);
+
+		task_el.appendChild(task_actions_el);
+
+		list_el.appendChild(task_el);//add the task to the screen
+
+		task_edit_el.addEventListener('click', (e) => {
+			if (task_edit_el.innerText.toLowerCase() == "edit") {
+				task_edit_el.innerText = "Save";
+				task_input_el.removeAttribute("readonly");
+				task_input_el.focus();
+			} else {
+				task_edit_el.innerText = "Edit";
+				task_input_el.setAttribute("readonly", "readonly");
+			}
+		});
+
+
+		//to remove the task and also to remove it from local storage START----------------------------------------------------------------
+		const taskEl = document.querySelector('.task');
+		const taskTask = task_input_el.value;
+		task_delete_el.addEventListener('click', (e) => {
+			
+			for (let i = 0; i < itemArray.length; i++) {
+				if (taskTask.toString() === itemArray[i].toString()) {
+					itemArray.splice(i, 1);
+					i--;
+				}
+			}
+			console.log(itemArray);
+			localStorage.setItem("new-task-input", JSON.stringify(itemArray));
+			list_el.removeChild(task_el);
+		});
+}
 
 //local storage end
 
-//change the title of the website START
+//change the title of the website START----------------------------------------------------------------
 // Get the current tab title
 const originalTitle = document.title;
 
@@ -33,9 +102,15 @@ document.addEventListener('visibilitychange', () => {
 		document.title = originalTitle;
 	}
 });
+// change the title of the website END----------------------------------------------------------------
 
-// change the title of the website END
-//date start
+
+//display the task from previous session START----------------------------------------------------------------
+
+
+//display the task from previous session END----------------------------------------------------------------
+
+//date start----------------------------------------------------------------
 
 // function displayDate(){
 // 	let date = new Date()
@@ -47,22 +122,26 @@ document.addEventListener('visibilitychange', () => {
 //   window.onload = function() {
 // 	displayDate()
 // };
-//date end
+//date end----------------------------------------------------------------
 
-//making a new task and adding it to the screen START
-window.addEventListener('load', () => { //does all the html and css file stuff firtst then come here 
+//making a new task and adding it to the screen START----------------------------------------------------------------
+window.addEventListener('load', () => { //does all the html and css file stuff firtst then come here
 	const form = document.querySelector("#new-task-form");
 	const input = document.querySelector("#new-task-input");
 	const list_el = document.querySelector("#status");
 
 	form.addEventListener('submit', (e) => {//run this every time the submit button is clicked
-		e.preventDefault();//show that button can be clicked again
+		e.preventDefault();//prevent the web page from refreshing
 		itemArray.push(input.value)
 		localStorage.setItem("new-task-input", JSON.stringify(itemArray));
 		console.log(itemArray)
 
 
 		const task = input.value;
+
+		if (!task){
+			alert("Please fill out the task")
+		}
 
 		const task_el = document.createElement('div');
 		task_el.setAttribute('draggable', 'true');//this is equal to having draggable = 'true'
@@ -116,7 +195,7 @@ window.addEventListener('load', () => { //does all the html and css file stuff f
 		});
 
 
-		//to remove the task and also to remove it from local storage START
+		//to remove the task and also to remove it from local storage START----------------------------------------------------------------
 		const taskEl = document.querySelector('.task');
 		const taskTask = task_input_el.value;
 		task_delete_el.addEventListener('click', (e) => {
@@ -131,10 +210,10 @@ window.addEventListener('load', () => { //does all the html and css file stuff f
 			localStorage.setItem("new-task-input", JSON.stringify(itemArray));
 			list_el.removeChild(task_el);
 		});
-		//to remove the task and also to remove it from local stroage END
+		//to remove the task and also to remove it from local stroage END----------------------------------------------------------------
 
 
-		//drag feature START
+		//drag feature START----------------------------------------------------------------
 		const draggables = document.querySelectorAll('.task') //all the items on the screen that you can drag
 		const containers = document.querySelectorAll('.tasks')//where are we able to drop are items 
 
@@ -175,8 +254,8 @@ window.addEventListener('load', () => { //does all the html and css file stuff f
 				}
 			}, { offset: Number.NEGATIVE_INFINITY }).element//set the offset to that all the other elements will be closer to y and is the smallest
 		}
-		//drag feature END
+		//drag feature END----------------------------------------------------------------
 
 	});
 });
-//making a new task and adding it ot the screen END
+//making a new task and adding it ot the screen END----------------------------------------------------------------
