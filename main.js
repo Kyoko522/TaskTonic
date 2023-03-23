@@ -1,8 +1,8 @@
 //local storage start
-const itemArray = localStorage.getItem("new-task-input") ? JSON.parse(localStorage.getItem("new-task-input")):
-[]
+const itemArray = localStorage.getItem("new-task-input") ? JSON.parse(localStorage.getItem("new-task-input")) :
+	[]
 
-// localStorage.clear();
+//localStorage.clear();
 
 //local storage end
 
@@ -12,17 +12,17 @@ const originalTitle = document.title;
 
 // Listen for visibility change events
 document.addEventListener('visibilitychange', () => {
-  // Check if the page is hidden
-  if (document.visibilityState === 'hidden') {
-    // Change the tab title to indicate the page is hidden
-    document.title = 'You Have Work To Do !!';
-  } else {
-    // Change the tab title back to the original title when the page is visible
-    document.title = originalTitle;
-  }
+	// Check if the page is hidden
+	if (document.visibilityState === 'hidden') {
+		// Change the tab title to indicate the page is hidden
+		document.title = 'You Have Work To Do !!';
+	} else {
+		// Change the tab title back to the original title when the page is visible
+		document.title = originalTitle;
+	}
 });
 
-  // change the title of the website END
+// change the title of the website END
 
 //date start
 
@@ -47,11 +47,12 @@ window.addEventListener('load', () => { //does all the html and css file stuff f
 	form.addEventListener('submit', (e) => {//run this every time the submit button is clicked
 		e.preventDefault();//show that button can be clicked again
 		itemArray.push(input.value)
+		localStorage.setItem("new-task-input", JSON.stringify(itemArray));
 		console.log(itemArray)
 
 
 		const task = input.value;
-		
+
 		const task_el = document.createElement('div');
 		task_el.setAttribute('draggable', 'true');//this is equal to having draggable = 'true'
 		task_el.className = 'task';
@@ -103,9 +104,23 @@ window.addEventListener('load', () => { //does all the html and css file stuff f
 			}
 		});
 
+
+		//to remove the task and also to remove it from local storage START
+		const taskEl = document.querySelector('.task');
+		const taskTask = task_input_el.value;
 		task_delete_el.addEventListener('click', (e) => {
+			
+			for (let i = 0; i < itemArray.length; i++) {
+				if (taskTask.toString() === itemArray[i].toString()) {
+					itemArray.splice(i, 1);
+					i--;
+				}
+			}
+			console.log(itemArray);
+			localStorage.setItem("new-task-input", JSON.stringify(itemArray));
 			list_el.removeChild(task_el);
 		});
+		//to remove the task and also to remove it from local stroage END
 
 
 		//drag feature START
