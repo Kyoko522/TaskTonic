@@ -1,7 +1,19 @@
 //local storage start
 const itemArray = localStorage.getItem("new-task-input") ? JSON.parse(localStorage.getItem("new-task-input")) :
 	[]
+const workingonArray = localStorage.getItem("new-task-input") ? JSON.parse(localStorage.getItem("new-task-input")) :
+	[]
 
+const completedArray = localStorage.getItem("new-task-input") ? JSON.parse(localStorage.getItem("new-task-input")) :
+	[]
+
+
+console.log('itemArray')
+console.log(itemArray)
+console.log('workingonArray')
+console.log(workingonArray)
+console.log('completeArray')
+console.log(completedArray)
 //localStorage.clear();
 
 //local storage end
@@ -87,7 +99,7 @@ window.addEventListener('load', () => { //does all the html and css file stuff f
 
 		task_el.appendChild(task_actions_el);
 
-		list_el.appendChild(task_el);
+		list_el.appendChild(task_el);//add the task to the screen
 
 		//draggables.push(task_el);
 		input.value = '';
