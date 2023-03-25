@@ -1,46 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>TaskTonic</title>
-	<style> @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@500&display=swap');</style>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@500&display=swap');
+	</style>
 	<link rel="icon" type="image/x-icon" href="/pic/icon.png">
 
 	<link rel="stylesheet" href="main.css" />
 </head>
+
 <body>
 	<topheader class="top-header">
-		<img src="/pic/icon.png" alt="My test image" height="50px"/>
-		<h3 class = 'icon'>TaskTonic</h3>
+		<img src="/pic/icon.png" alt="My test image" height="50px" />
+		<h3 class='icon'>TaskTonic</h3>
 
 
 	</topheader>
-<!--	<h1><span id="date" class = 'date'></span></h1>-->
+	<!--	<h1><span id="date" class = 'date'></span></h1>-->
 
 	<header>
 		<h1>Task List</h1>
 		<form id="new-task-form">
-			<input 
-				type="text" 
-				name="new-task-input" 
-				id="new-task-input" 
-				placeholder="What do you have planned?" 
-				require/>
-			<input 
-				type="submit"
-				id="new-task-submit" 
-				value="Add task" />
+			<input type="text" name="new-task-input" id="new-task-input" placeholder="What do you have planned?"
+				require />
+			<input type="submit" id="new-task-submit" value="Add task" />
 		</form>
 	</header>
 	<main>
-		<div class = "task-list">
-		<section onload = "init()">
-			<h2>To Do</h2>
+		<div class="task-list">
+			<section onload="init()">
+				<h2>To Do</h2>
 
-			<div class="tasks" id="status" >
-				<!-- <div class="task">
+				<div class="tasks_todo" id="status_todo">
+
+					<!-- <div class="task">
 					<div class="content">
 						<input 
 							type="text" 
@@ -55,15 +53,16 @@
 					</div>
 				</div> -->
 
-			</div>
+				</div>
 
-		</section>
+			</section>
 
-		<section onload = "init()">
-			<h2>Working On</h2>
+			<section onload="init()">
+				<h2>Working On</h2>
 
-			<div class="tasks" id="status" >
-				<!-- <div class="task">
+				<div class="tasks_work" id="status_work">
+
+					<!-- <div class="task">
 					<div class="content">
 						<input 
 							type="text" 
@@ -78,16 +77,17 @@
 					</div>
 				</div> -->
 
-			</div>
+				</div>
 
 
-		</section>
+			</section>
 
-		<section onload = "init()">
-			<h2>Complete Task</h2>
+			<section onload="init()">
+				<h2>Complete Task</h2>
 
-			<div class="tasks" id="status" >
-				<!-- <div class="task">
+				<div class="tasks_done" id="status_done">
+
+					<!-- <div class="task">
 					<div class="content">
 						<input 
 							type="text" 
@@ -101,14 +101,13 @@
 						<button class="delete">Delete</button> 
 					</div>
 				</div> -->
+				</div>
 
-			</div>
-
-
-		</section>
+			</section>
 		</div>
 	</main>
 
 	<script src="main.js"></script>
 </body>
+
 </html>
