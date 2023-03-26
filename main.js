@@ -29,8 +29,7 @@ function drag() {
 	const containers_done = document.querySelectorAll('.tasks_done')
 
 	draggables.forEach(task => {                            //go through all the items on the screen that can be dragged
-		task.addEventListener('dragstart', () => {            //what happens when we start dragging
-			task.classList.add('dragging')                      //set a class when trying to drag a task
+		task.addEventListener('dragstart', e=> {            //what happens when we start dragging
 		})
 
 		task.addEventListener('dragend', () => {              //see when the user stops dragging the task
@@ -66,7 +65,7 @@ function drag() {
 			} else {
 				tasks_work.insertBefore(task, afterElement)
 			}
-			
+
 		})
 
 	})
@@ -79,17 +78,11 @@ function drag() {
 			const afterElement = getDragAfterElement(tasks_done, e.clientY) //call the function to get the where in the container the task should be located and save it in the afterElement
 			const task = document.querySelector('.dragging') //find the element that is currently dragging see what elemetn has the class dragging
 			if (afterElement == null) {
-				const div = document.querySelector('div ');
 				tasks_done.appendChild(task)
 			} else {
 				tasks_done.insertBefore(task, afterElement)
 			}
-			const tasks_todo = document.getElementById('status_todo');
-const todo_tasks = tasks_todo.querySelectorAll('.text');
 
-todo_tasks.forEach(task => {
-  console.log(task.value); // or do anything else with the value
-});
 		})
 
 	})
@@ -109,6 +102,8 @@ todo_tasks.forEach(task => {
 		}, { offset: Number.NEGATIVE_INFINITY }).element//set the offset to that all the other elements will be closer to y and is the smallest
 	}
 }
+
+
 //drag feature END----------------------------------------------------------------
 
 //Show the task from the previous chapter START ------------------------------------------------
