@@ -30,6 +30,8 @@ function drag() {
 
 	draggables.forEach(task => {                            //go through all the items on the screen that can be dragged
 		task.addEventListener('dragstart', e=> {            //what happens when we start dragging
+			e.dataTransfer.setData('text/plain', task.innerText);
+			task.classList.add('dragging')                      //set a class when trying to drag a task
 		})
 
 		task.addEventListener('dragend', () => {              //see when the user stops dragging the task
@@ -78,11 +80,11 @@ function drag() {
 			const afterElement = getDragAfterElement(tasks_done, e.clientY) //call the function to get the where in the container the task should be located and save it in the afterElement
 			const task = document.querySelector('.dragging') //find the element that is currently dragging see what elemetn has the class dragging
 			if (afterElement == null) {
+				const div = document.querySelector('div ');
 				tasks_done.appendChild(task)
 			} else {
 				tasks_done.insertBefore(task, afterElement)
 			}
-
 		})
 
 	})
