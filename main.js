@@ -20,17 +20,15 @@ function checkArray() {
 	//localStorage.clear();
 }
 
-
 //drag feature START----------------------------------------------------------------
 function drag() {
 	const draggables = document.querySelectorAll('.task') //all the items on the screen that you can drag
-	const containers = document.querySelectorAll('.tasks_todo')//where are we able to drop are items 
+	const containers = document.querySelectorAll('.tasks_todo')//where are we able to drop are items
 	const containers_work = document.querySelectorAll('.tasks_work')
 	const containers_done = document.querySelectorAll('.tasks_done')
 
 	draggables.forEach(task => {                            //go through all the items on the screen that can be dragged
-		task.addEventListener('dragstart', e=> {            //what happens when we start dragging
-			e.dataTransfer.setData('text/plain', task.innerText);
+		task.addEventListener('dragstart', e => {            //what happens when we start dragging
 			task.classList.add('dragging')                      //set a class when trying to drag a task
 		})
 
@@ -40,7 +38,7 @@ function drag() {
 	})
 
 	containers.forEach(tasks_todo => {
-		// loop through all the tasks or containers where the task are being stored (to do, working on, and complete)           
+		// loop through all the tasks or containers where the task are being stored (to do, working on, and complete)
 		tasks_todo.addEventListener('dragover', e => {
 			e.preventDefault()                                  //change the cursor so that it say that we are allowed to drop somthing there
 			const afterElement = getDragAfterElement(tasks_todo, e.clientY) //call the function to get the where in the container the task should be located and save it in the afterElement
@@ -51,12 +49,13 @@ function drag() {
 			} else {
 				tasks_todo.insertBefore(task, afterElement)
 			}
+
 		})
 
 	})
 
 	containers_work.forEach(tasks_work => {
-		// loop through all the tasks or containers where the task are being stored (to do, working on, and complete)           
+		// loop through all the tasks or containers where the task are being stored (to do, working on, and complete)
 		tasks_work.addEventListener('dragover', e => {
 			e.preventDefault()                                  //change the cursor so that it say that we are allowed to drop somthing there
 			const afterElement = getDragAfterElement(tasks_work, e.clientY) //call the function to get the where in the container the task should be located and save it in the afterElement
@@ -67,14 +66,13 @@ function drag() {
 			} else {
 				tasks_work.insertBefore(task, afterElement)
 			}
-
 		})
 
 	})
 	checkArray();
 
 	containers_done.forEach(tasks_done => {
-		// loop through all the tasks or containers where the task are being stored (to do, working on, and complete)           
+		// loop through all the tasks or containers where the task are being stored (to do, working on, and complete)
 		tasks_done.addEventListener('dragover', e => {
 			e.preventDefault()                                  //change the cursor so that it say that we are allowed to drop somthing there
 			const afterElement = getDragAfterElement(tasks_done, e.clientY) //call the function to get the where in the container the task should be located and save it in the afterElement
@@ -85,15 +83,16 @@ function drag() {
 			} else {
 				tasks_done.insertBefore(task, afterElement)
 			}
+
 		})
 
 	})
 
-	//this will sort where the task should be between what 2 task do u want it 
+	//this will sort where the task should be between what 2 task do u want it
 	function getDragAfterElement(tasks_todo, y) {//get the mouse postion
 		const taskElements = [...tasks_todo.querySelectorAll('.task:not(.dragging)')]//get all the elements inside of the container and put it inside of a array
 
-		return taskElements.reduce((closest, child) => {//call a function on the array that we made and loop through it and which element is right after the y postion 
+		return taskElements.reduce((closest, child) => {//call a function on the array that we made and loop through it and which element is right after the y postion
 			const box = child.getBoundingClientRect()//give us a rectangle for the children
 			const offset = y - box.top - box.height / 2//find the center of are boxes
 			if (offset < 0 && offset > closest.offset) {//we only care about the offset that below 0 and also which one is the closest to zeor
@@ -105,12 +104,12 @@ function drag() {
 	}
 }
 
-
 //drag feature END----------------------------------------------------------------
+
 
 //Show the task from the previous chapter START ------------------------------------------------
 for (let i = 0; i < itemArray.length; i++) {
-
+	//const task_input_el = document.createElement('input');
 	const list_todo = document.querySelector("#status_todo")
 	const list_work = document.querySelector("#status_work")														//this doesn't need to be here as this is only looping through the todo list section  we still need to add 2 more loops to check the other 2 sections
 	const list_complete = document.querySelector("status_complete")
@@ -161,8 +160,6 @@ for (let i = 0; i < itemArray.length; i++) {
 		}
 	});
 	//show the task from the previous session END----------------------------------------------------------------
-
-
 	drag();
 
 
@@ -295,6 +292,7 @@ window.addEventListener('load', () => { //does all the html and css file stuff f
 		});
 
 
+
 		//to remove the task and also to remove it from local storage START----------------------------------------------------------------
 		const taskEl = document.querySelector('.task');
 		const taskTask = task_input_el.value;
@@ -310,16 +308,16 @@ window.addEventListener('load', () => { //does all the html and css file stuff f
 
 				}
 			}
-
 			localStorage.setItem("new-task-input", JSON.stringify(itemArray));
 			list_todo.removeChild(task_el);
-			//console.log(taskTask);
 		});
-		//to remove the task and also to remove it from local stroage END----------------------------------------------------------------
+
+		task_el.addEventListener('drag', (e) => {
+			console.log(`Dragging task: ${task}`);
+		});
+
 		drag();
-
-
-
 	});
 });
+
 //making a new task and adding it ot the screen END----------------------------------------------------------------
