@@ -150,19 +150,26 @@ for (let i = 0; i < itemArray.length; i++) {
 	list_todo.appendChild(task_el);//add the task to the screen
 
 	task_edit_el.addEventListener('click', (e) => {
+		e.preventDefault()
+		let index = 0;
 		if (task_edit_el.innerText.toLowerCase() == "edit") {
 			task_edit_el.innerText = "Save";
+			for (let i = 0; i < itemArray.length; i++){
+				if (itemArray[i] == task_input_el.value){
+				index = i;
+				}
+			}
 			task_input_el.removeAttribute("readonly");
 			task_input_el.focus();
 		} else {
+			itemArray[index] = task_input_el.value;
+			localStorage.setItem("new-task-input", JSON.stringify(itemArray));
 			task_edit_el.innerText = "Edit";
 			task_input_el.setAttribute("readonly", "readonly");
 		}
 	});
 	//show the task from the previous session END----------------------------------------------------------------
 	drag();
-
-
 
 	//to remove the task and also to remove it from local storage START----------------------------------------------------------------
 	const taskEl = document.querySelector('.task');
@@ -200,23 +207,6 @@ document.addEventListener('visibilitychange', () => {
 	}
 });
 // change the title of the website END----------------------------------------------------------------
-
-
-
-
-//date start----------------------------------------------------------------
-
-// function displayDate(){
-// 	let date = new Date()
-// 	date = date.toString().split(" ")
-// 	date = date[1] + " " + date[2] + " " + date[3]
-// 	document.querySelector("#date").innerHTML = date
-//   }
-//
-//   window.onload = function() {
-// 	displayDate()
-// };
-//date end----------------------------------------------------------------
 
 //making a new task and adding it to the screen START----------------------------------------------------------------
 window.addEventListener('load', () => { //does all the html and css file stuff firtst then come here
@@ -292,7 +282,6 @@ window.addEventListener('load', () => { //does all the html and css file stuff f
 		});
 
 
-
 		//to remove the task and also to remove it from local storage START----------------------------------------------------------------
 		const taskEl = document.querySelector('.task');
 		const taskTask = task_input_el.value;
@@ -305,15 +294,10 @@ window.addEventListener('load', () => { //does all the html and css file stuff f
 					localStorage.setItem("new-task-input", JSON.stringify(itemArray));
 					i--;
 					break;
-
 				}
 			}
 			localStorage.setItem("new-task-input", JSON.stringify(itemArray));
 			list_todo.removeChild(task_el);
-		});
-
-		task_el.addEventListener('drag', (e) => {
-			console.log(`Dragging task: ${task}`);
 		});
 
 		drag();
