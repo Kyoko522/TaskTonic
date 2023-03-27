@@ -222,7 +222,7 @@ window.addEventListener("load", () => {
   const form = document.querySelector("#new-task-form");
   const input = document.querySelector("#new-task-input");
   const list_todo = document.querySelector("#status_todo");
-
+//this line grabs the value of your stuipd input field and logs it
   const source = document.querySelectorAll(".task");
   source.forEach((element) => {
 	element.addEventListener("drag", (event) => {
